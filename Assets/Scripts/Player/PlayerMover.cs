@@ -11,6 +11,11 @@ namespace Player
         private Vector2 _inputVector = Vector2.zero;
         private Rigidbody2D _rb;
 
+        private void Awake()
+        {
+            Core.player = this.transform;
+        }
+
         void Start()
         {
             _rb = GetComponent<Rigidbody2D>();

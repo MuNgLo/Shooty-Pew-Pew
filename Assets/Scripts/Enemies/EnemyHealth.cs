@@ -13,7 +13,12 @@ namespace Enemies
             private int _value = 100;
             public int Value { get { return _value; } private set { } }
 
-            public void TakeDamage(Weapons.Payload payload)
+        public void ResetToSpawnValues()
+        {
+            _value = 100;
+        }
+
+        public void TakeDamage(Weapons.Payload payload)
             {
                 if (payload._damageValue < 1) { return; }
                 _value -= payload._damageValue;
