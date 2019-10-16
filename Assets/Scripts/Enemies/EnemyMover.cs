@@ -20,10 +20,6 @@ namespace Enemies
         {
             _rb = GetComponent<Rigidbody2D>();
             _rb.freezeRotation = true;
-            if(_route != string.Empty)
-            {
-                _plotCourse = Core.Routes.GetRoute(_route).Plots;
-            }
         }
 
         // Update is called once per frame
@@ -31,7 +27,7 @@ namespace Enemies
         {
             if (_plotIndex >= _plotCourse.Count)
             {
-                if (_loop) { _plotIndex = 0; } else { Die(); }
+                if (_loop) { _plotIndex = 0; } else { Die(); return; }
             }
             _rb.AddForce((_plotCourse[_plotIndex].position - transform.position).normalized * _engineThrust * Time.deltaTime);
             if(Vector3.Distance(_plotCourse[_plotIndex].position, transform.position) < 0.3f)
@@ -40,9 +36,15 @@ namespace Enemies
             }
         }
 
+        public void ResetOnSpawn()
+        {
+            _loop = false;
+            _plotIndex = 0;
+        }
+
         private void Die()
         {
-            throw new NotImplementedException();
+            GameObject.Destroy(this.gameObject);
         }
     }
 }

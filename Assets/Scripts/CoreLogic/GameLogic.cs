@@ -36,7 +36,23 @@ public class GameLogic : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         _playerAvater.SetActive(true);
     }
+
+    internal void EndOfLevelReached()
+    {
+        _playerAvater.SetActive(false);
+        _state = GAMESTATE.POSTRUN;
+        Core.menus.GotToMenu("Completed");
+        GameEvents.RaiseOnEndRun();
+        StartCoroutine("CompletionscreenTimer");
+    }
+
     IEnumerator DeathscreenTimer()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _state = GAMESTATE.MAINMENU;
+        Core.menus.GotToMenu("MainMenu");
+    }
+    IEnumerator CompletionscreenTimer()
     {
         yield return new WaitForSeconds(5.0f);
         _state = GAMESTATE.MAINMENU;

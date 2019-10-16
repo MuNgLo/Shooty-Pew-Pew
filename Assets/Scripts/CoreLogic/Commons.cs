@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum GAMESTATE { MAINMENU, PLAYING, PAUSED, DEATHSCREEN }
+public enum GAMESTATE { MAINMENU, PLAYING, PAUSED, POSTRUN, DEATHSCREEN }
 public enum DAMAGETYPE { ENERGY, EXPLOSIVE }
 
 public class HurtsToTouch : MonoBehaviour
@@ -17,6 +17,9 @@ public static class Core
     internal static GameLogic gLogic;
     internal static RouteManager Routes;
     internal static MenuSystem menus;
+    internal static RunManager run;
+    internal static Enemies.EnemyManager enemies;
+    internal static Transform player;
 }
 public static class GameEvents
 {
@@ -24,7 +27,12 @@ public static class GameEvents
     static public UnityEvent OnPlayerDeath = new UnityEvent();
     static public UnityEvent OnStartRun = new UnityEvent();
     static public UnityEvent OnEndRun = new UnityEvent();
+    static public RunTicEvent OnRunTic = new RunTicEvent();
 
+    static public void RaiseOnRunTic(int value)
+    {
+        OnRunTic?.Invoke(value);
+    }
     static public void RaiseOnStartRun()
     {
         OnStartRun?.Invoke();
@@ -46,3 +54,9 @@ public struct EnemyCourse
     public Transform Spawnpoint;
     public List<Transform> Plots;
 }
+[System.Serializable]
+public class RunTicEvent : UnityEvent<int>
+{
+
+}
+
