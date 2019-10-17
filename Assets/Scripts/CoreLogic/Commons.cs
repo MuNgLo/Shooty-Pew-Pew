@@ -6,6 +6,9 @@ using UnityEngine.Events;
 
 public enum GAMESTATE { MAINMENU, PLAYING, PAUSED, POSTRUN, DEATHSCREEN }
 public enum DAMAGETYPE { ENERGY, EXPLOSIVE }
+public enum SPAWNSIDE { TOP, RIGHT, BOTTOM, LEFT }
+public enum ROUTENAMES { UNSET, TOPPASS, MIDPASS, BOTTOMPASS }
+public enum ENEMYTYPE { UNSET, BASIC, SHOOTER, SPAMMER }
 
 public class HurtsToTouch : MonoBehaviour
 {
@@ -50,7 +53,7 @@ public static class GameEvents
 [System.Serializable]
 public struct EnemyCourse
 {
-    public string Name;
+    public ROUTENAMES Name;
     public Transform Spawnpoint;
     public List<Transform> Plots;
 }
