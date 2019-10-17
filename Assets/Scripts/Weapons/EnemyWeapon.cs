@@ -4,7 +4,10 @@ using UnityEngine;
 namespace Weapons {
     public class EnemyWeapon : MonoBehaviour
     {
+        public bool _canShot = false;
         public GameObject _bulletPrefab;
+        [Range(1, 100)]
+        public int _fireChance = 10;
         [Range(1, 1000)]
         public int _fireRate = 100;
         private float _lastShot = 0.0f;
@@ -21,9 +24,9 @@ namespace Weapons {
         // Update is called once per frame
         void Update()
         {
-            if (_lastShot + 60.0f / _fireRate < Time.time && Input.GetButton("Fire1"))
+            if (!_canShot) { return; }
+            if (_lastShot + 60.0f / _fireRate < Time.time && Random.Range(0,10000) < _fireChance)
             {
-                Debug.Log("Enemy goes PEWPEW!!!");
                 GameObject bullet = (GameObject)Instantiate(_bulletPrefab);
                 bullet.transform.position = this.transform.position;
                 bullet.GetComponent<Bullet>()._payload._damageType = _type;

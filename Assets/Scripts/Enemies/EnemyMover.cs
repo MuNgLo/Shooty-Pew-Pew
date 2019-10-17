@@ -12,7 +12,7 @@ namespace Enemies
         public int _plotIndex = 0;
         public bool _loop = false;
 
-        public string _route = string.Empty;
+        public ROUTENAMES _route = ROUTENAMES.UNSET;
 
         private Rigidbody2D _rb;
 
