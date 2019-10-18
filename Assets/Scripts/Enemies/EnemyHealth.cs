@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Enemies
 {
 
-        public class EnemyHealth : HurtsToTouch
+        public class EnemyHealth : CanTakeDamage
         {
 
             private int _value = 100;
@@ -18,7 +18,7 @@ namespace Enemies
             _value = 100;
         }
 
-        public void TakeDamage(Weapons.Payload payload)
+        internal override void TakeDamage(Weapons.Payload payload)
             {
                 if (payload._damageValue < 1) { return; }
                 _value -= payload._damageValue;
@@ -28,8 +28,9 @@ namespace Enemies
                 }
             }
 
-            private void Die()
-            {
+        private void Die()
+        {
+            GameEvents.RaiseOnEnemyDeath(new DeathEventArguments() { Location = this.transform.position });
                 GameObject.Destroy(this.gameObject);
             }
         }

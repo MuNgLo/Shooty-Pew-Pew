@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Enemies
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class EnemyMover : MonoBehaviour
+    public class EnemyMover : HurtsToTouch
     {
         public float _engineThrust = 1000.0f;
         public List<Transform> _plotCourse = new List<Transform>();
@@ -38,7 +38,6 @@ namespace Enemies
 
         public void ResetOnSpawn()
         {
-            _loop = false;
             _plotIndex = 0;
         }
 

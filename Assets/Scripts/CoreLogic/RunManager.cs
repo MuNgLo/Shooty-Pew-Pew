@@ -12,6 +12,13 @@ public class RunManager : MonoBehaviour
     public float _travelSpeed = 1.0f;
     public int _lastTic = 0;
 
+    public float Completion { get { return Mathf.Clamp01(_travelled / _levelLength); } internal set { } }
+
+    private void Awake()
+    {
+        Core.run = this;
+    }
+
     private void Start()
     {
         GameEvents.OnEndRun.AddListener(ResetRun);

@@ -15,11 +15,13 @@ namespace Weapons
             if (collision.collider.GetComponent<Player.PlayerHealth>())
             {
                 collision.collider.GetComponent<Player.PlayerHealth>().TakeDamage(_payload);
+                GameEvents.RaiseOnHit();
                 Die();
             }
             if (collision.collider.GetComponent<Enemies.EnemyHealth>())
             {
                 collision.collider.GetComponent<Enemies.EnemyHealth>().TakeDamage(_payload);
+                GameEvents.RaiseOnHit();
                 Die();
             }
         }

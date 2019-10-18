@@ -11,11 +11,13 @@ public class UIProgressionSLider : MonoBehaviour
     void Start()
     {
         _bar = GetComponent<Slider>();
-        GameEvents.OnRunTic.AddListener(NewTic);
     }
 
-    private void NewTic(int tic)
+    private void Update()
     {
-        _bar.value = tic;
+        if (Core.run)
+        {
+            _bar.value = Core.run.Completion;
+        }
     }
 }
