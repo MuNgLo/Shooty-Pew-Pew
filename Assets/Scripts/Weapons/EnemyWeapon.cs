@@ -24,7 +24,7 @@ namespace Weapons {
         // Update is called once per frame
         void Update()
         {
-            if (!_canShot) { return; }
+            if (!_canShot || !Core.gLogic.IsPlayerAlive()) { return; }
             if (_lastShot + 60.0f / _fireRate < Time.time && Random.Range(0,10000) < _fireChance)
             {
                 GameObject bullet = (GameObject)Instantiate(_bulletPrefab);
@@ -34,6 +34,7 @@ namespace Weapons {
                 Vector2 aim = Core.player.position - this.transform.position;
                 bullet.GetComponent<Rigidbody2D>().AddForce(aim.normalized * _bulletSpeed * Time.deltaTime, ForceMode2D.Impulse);
                 _lastShot = Time.time;
+                GameEvents.RaiseOnFire();
             }
         }
     }

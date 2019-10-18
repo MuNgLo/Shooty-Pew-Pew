@@ -19,6 +19,11 @@ public class GameLogic : MonoBehaviour
         GameEvents.OnPlayerDeath.AddListener(OnPlayerDeath);
     }
 
+    internal bool IsPlayerAlive()
+    {
+        return _playerAvater.activeSelf;
+    }
+
     private void OnPlayerDeath()
     {
         _playerAvater.SetActive(false);
@@ -33,12 +38,26 @@ public class GameLogic : MonoBehaviour
 
     IEnumerator SpawnIn()
     {
-        yield return new WaitForSeconds(2.0f);
+        Core.localPlayer._weapon._canShot = false;
+        Core.localPlayer._hitbox.enabled = false;
+        yield return new WaitForSeconds(1.5f);
         _playerAvater.SetActive(true);
+        float timer = 0.0f;
+        while (timer < 2.0f)
+        {
+            Core.localPlayer._sprite.enabled = !Core.localPlayer._sprite.enabled;
+
+            timer += 0.01666f;
+            yield return new WaitForSeconds(0.01666f);
+        }
+        Core.localPlayer._hitbox.enabled = true;
+        Core.localPlayer._sprite.enabled = true;
+        Core.localPlayer._weapon._canShot = true;
     }
 
     internal void EndOfLevelReached()
     {
+        if(Core.enemies.EnemyCount > 0) { return; }
         _playerAvater.SetActive(false);
         _state = GAMESTATE.POSTRUN;
         Core.menus.GotToMenu("Completed");

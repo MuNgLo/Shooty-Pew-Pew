@@ -52,6 +52,10 @@ namespace Player
             {
                 TakenumericDamage(collision.collider.GetComponent<HurtsToTouch>()._damageOnTouch);
             }
+            if (collision.collider.GetComponent<Pickup>())
+            {
+                collision.collider.GetComponent<Pickup>().Apply();
+            }
         }
     }
 }

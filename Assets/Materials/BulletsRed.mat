@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BulletsRed
-  m_Shader: {fileID: -6465566751694194690, guid: 33973208f757037498dcf0583decdbc0,
+  m_Shader: {fileID: -6465566751694194690, guid: 549eef7c8580a824e9125f6c25706d19,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -74,6 +74,11 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - Color_CD7944CE: {r: 32, g: 0, b: 0, a: 0}
+    - Color_2D5C23F6: {r: 0, g: 0, b: 1, a: 1}
+    - Color_55502F47: {r: 0, g: 0, b: 0, a: 1}
+    - Color_898A3C53: {r: 85.44501, g: 0, b: 63.99999, a: 1}
+    - Color_CD7944CE: {r: 42.722507, g: 0, b: 0, a: 0}
+    - Color_D9F9AFF9: {r: 72.47169, g: 0.8947122, b: 0, a: 1}
+    - Color_DA6D38C8: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

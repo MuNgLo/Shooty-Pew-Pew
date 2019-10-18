@@ -5,11 +5,13 @@ using UnityEngine;
 namespace Enemies {
     public class EnemyManager : MonoBehaviour
     {
+        public int EnemyCount { get { return CountEnemies(); } private set {} }
+
         public GameObject _basicEnemyPrefab;
         public GameObject _shooterEnemyPrefab;
         public GameObject _spammerEnemyPrefab;
         public List<EnemyCard> _cards = new List<EnemyCard>();
-
+        private Transform _deck;
         private void Awake()
         {
             Core.enemies = this;
@@ -22,10 +24,28 @@ namespace Enemies {
             GameEvents.OnRunTic.AddListener(TicUpdate);
             GameEvents.OnEndRun.AddListener(Cleanup);
             GameEvents.OnStartRun.AddListener(Cleanup);
-            for (int i = 0; i < _cards.Count; i++)
+            _deck = this.transform.parent.Find("EnemyCards");
+            if(_deck == null) { Debug.LogError("Could not find EnemyCards!"); return; }
+            int i = 0;
+            foreach (Transform child in _deck)
             {
-                _cards[i]._cardID = i;
+                if (child.GetComponent<EnemyCard>())
+                {
+                    _cards.Add(child.GetComponent<EnemyCard>());
+                    _cards[i]._cardID = i;
+                    i++;
+                }
             }
+        }
+
+        private int CountEnemies()
+        {
+            int i = 0;
+            foreach (Transform child in transform)
+            {
+                i++;
+            }
+            return i;
         }
 
         private void Cleanup()
@@ -59,13 +79,10 @@ namespace Enemies {
                 switch (card._side)
                 {
                     case SPAWNSIDE.TOP:
+                        course = Core.Routes.GetVerticalRoute(card._route);
                         break;
                     case SPAWNSIDE.RIGHT:
                         course = Core.Routes.GetRightRoute(card._route);
-                        break;
-                    case SPAWNSIDE.BOTTOM:
-                        break;
-                    case SPAWNSIDE.LEFT:
                         break;
                     default:
                         course = Core.Routes.GetRightRoute(card._route);
@@ -80,8 +97,22 @@ namespace Enemies {
                         EnemyMover mover = newEnemy.GetComponent<EnemyMover>();
                         mover._loop = card._loops;
                         mover._route = course.Name;
-                        mover._plotCourse = course.Plots;
-                        newEnemy.transform.position = course.Spawnpoint.position;
+                        mover._plotCourse.AddRange(course.Plots);
+                        if (card._reversed)
+                        {
+                            mover._plotCourse.RemoveAt(mover._plotCourse.Count - 1);
+                            mover._plotCourse.Reverse();
+                            mover._plotCourse.Add(course.Spawnpoint);
+                            newEnemy.transform.position = course.AltSpawnpoint.position;
+                        }
+                        else
+                        {
+                            newEnemy.transform.position = course.Spawnpoint.position;
+                        }
+                        if (mover._loop)
+                        {
+                            mover._plotCourse.RemoveAt(mover._plotCourse.Count -1);
+                        }
                         newEnemy.GetComponent<EnemyHealth>().ResetToSpawnValues();
                         mover.ResetOnSpawn();
                         newEnemy.SetActive(true);
