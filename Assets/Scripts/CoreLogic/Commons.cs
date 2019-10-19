@@ -37,7 +37,7 @@ public static class GameEvents
     static public UnityEvent OnPlayerTakingDamage = new UnityEvent();
     static public UnityEvent OnPlayerDeath = new UnityEvent();
     static public EnemyDeathEvent OnEnemyDeath = new EnemyDeathEvent();
-    static public UnityEvent OnHit = new UnityEvent();
+    static public WeaponHitEvent OnHit = new WeaponHitEvent();
     static public UnityEvent OnFire = new UnityEvent();
     static public UnityEvent OnStartRun = new UnityEvent();
     static public UnityEvent OnEndRun = new UnityEvent();
@@ -47,9 +47,9 @@ public static class GameEvents
     {
         OnEnemyDeath?.Invoke(args);
     }
-    static public void RaiseOnHit()
+    static public void RaiseOnHit(WeaponHitEventArguments args)
     {
-        OnHit?.Invoke();
+        OnHit?.Invoke(args);
     }
     static public void RaiseOnFire()
     {
@@ -90,12 +90,23 @@ public struct DeathEventArguments
     public Vector3 Location;
 }
 [System.Serializable]
+public struct WeaponHitEventArguments
+{
+    public Weapons.WEAPONTYPE WeaponType;
+    public Vector3 Location;
+}
+[System.Serializable]
 public class RunTicEvent : UnityEvent<int>
 {
 
 }
 [System.Serializable]
 public class EnemyDeathEvent : UnityEvent<DeathEventArguments>
+{
+
+}
+[System.Serializable]
+public class WeaponHitEvent : UnityEvent<WeaponHitEventArguments>
 {
 
 }
