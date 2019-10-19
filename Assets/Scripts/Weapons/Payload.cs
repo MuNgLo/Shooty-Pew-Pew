@@ -9,6 +9,7 @@ namespace Weapons
     [System.Serializable]
     public class Payload
     {
+        public WEAPONTYPE _weaponType = WEAPONTYPE.UNSET;
         public DAMAGETYPE _damageType = DAMAGETYPE.ENERGY;
         public int _damageValue = 1;
     }

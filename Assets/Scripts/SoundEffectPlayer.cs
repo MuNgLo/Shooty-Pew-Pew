@@ -23,12 +23,17 @@ public class SoundEffectPlayer : MonoBehaviour
         if (_onFire) { GameEvents.OnFire.AddListener(PlaySound); }
     }
 
+    private void PlaySound()
+    {
+        _audio.PlayOneShot(_sound);
+    }
+
     private void PlaySound(DeathEventArguments arg0)
     {
         _audio.PlayOneShot(_sound);
     }
 
-    private void PlaySound()
+    private void PlaySound(WeaponHitEventArguments args)
     {
         _audio.PlayOneShot(_sound);
     }

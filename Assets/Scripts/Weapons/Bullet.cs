@@ -15,13 +15,13 @@ namespace Weapons
             if (collision.collider.GetComponent<Player.PlayerHealth>())
             {
                 collision.collider.GetComponent<Player.PlayerHealth>().TakeDamage(_payload);
-                GameEvents.RaiseOnHit();
+                GameEvents.RaiseOnHit(new WeaponHitEventArguments() { WeaponType = _payload._weaponType, Location = collision.contacts[0].point });
                 Die();
             }
             if (collision.collider.GetComponent<Enemies.EnemyHealth>())
             {
                 collision.collider.GetComponent<Enemies.EnemyHealth>().TakeDamage(_payload);
-                GameEvents.RaiseOnHit();
+                GameEvents.RaiseOnHit(new WeaponHitEventArguments() { WeaponType = _payload._weaponType, Location = collision.contacts[0].point });
                 Die();
             }
         }

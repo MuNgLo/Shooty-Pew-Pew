@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 291762025089698966}
   - component: {fileID: 8927898499996314529}
   - component: {fileID: 7205512958097142102}
+  - component: {fileID: 3618219277546687891}
   m_Layer: 13
   m_Name: pfLaserPickup
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8022720479714244318}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.1}
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -51,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 85f3a2b6a73b4cc44b916c13e688232d, type: 2}
+  - {fileID: 2100000, guid: a4b721930debce046b7c21cf33759bf2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -71,12 +72,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4917ae1827bb9ef4987d9d17c18a7e79, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fce406ea5a4e6a3478e98bd3d501b02b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.6875, y: 1}
+  m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -97,7 +98,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 5.91
 --- !u!114 &8927898499996314529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,3 +125,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _TTL: 10
+--- !u!95 &3618219277546687891
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8022720479714244318}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b4b9b1bd95b5fad4ca6045e3ca8db3f1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

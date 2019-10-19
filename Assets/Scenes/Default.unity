@@ -1649,7 +1649,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dropTable:
-  - {fileID: 1876420249821615880, guid: 7327aae87df5a23409ae26335396a5dd, type: 3}
+  - {fileID: 8022720479714244318, guid: 45a85416b99868b41adeec859023d7d0, type: 3}
+  - {fileID: 8022720479714244318, guid: 45a85416b99868b41adeec859023d7d0, type: 3}
   - {fileID: 8022720479714244318, guid: 45a85416b99868b41adeec859023d7d0, type: 3}
 --- !u!1 &519420028
 GameObject:
@@ -2513,6 +2514,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1748054012}
   m_RootOrder: 49
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &681123689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 681123690}
+  m_Layer: 0
+  m_Name: ParticleEffects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &681123690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681123689}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1072436753}
+  - {fileID: 1901016041}
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &727810060
 GameObject:
@@ -3418,6 +3451,57 @@ Transform:
   m_Father: {fileID: 1748054012}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1072436752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1072436753}
+  - component: {fileID: 1072436754}
+  m_Layer: 0
+  m_Name: LaserHit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1072436753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072436752}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 681123690}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1072436754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072436752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced3bf3fbf2259d4ba59caf432a49ed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleEffect: {fileID: 2369843436449363476, guid: e3cc3144231dcee4fbcfaf2ca90637bb,
+    type: 3}
+  _onHit: 1
+  _onLaserHit: 1
+  _onPlasmaHit: 0
+  _onDeath: 0
+  _onPlayerDeath: 0
+  _onFire: 0
 --- !u!1 &1114366235
 GameObject:
   m_ObjectHideFlags: 0
@@ -5543,8 +5627,9 @@ MonoBehaviour:
   _range: 10
   _lifetime: 0.2
   _payload:
+    _weaponType: 1
     _damageType: 0
-    _damageValue: 30
+    _damageValue: 45
 --- !u!1 &1681886965
 GameObject:
   m_ObjectHideFlags: 0
@@ -6413,15 +6498,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510bf8034394a7747a9df0504afe0abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fireRate: 387
+  _fireRate: 299
   _lastShot: 0
-  _bulletSpeed: 330
+  _bulletSpeed: 555
   _hittable:
     serializedVersion: 2
     m_Bits: 256
   _range: 10
   _lifetime: 0.2
   _payload:
+    _weaponType: 2
     _damageType: 0
     _damageValue: 100
   _bulletPrefab: {fileID: 2330453736492573044, guid: 0bcd4ea4940890645ae62a399c0b2d14,
@@ -6753,6 +6839,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882181872}
   m_CullTransparentMesh: 0
+--- !u!1 &1901016040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1901016041}
+  - component: {fileID: 1901016042}
+  m_Layer: 0
+  m_Name: PlasmaHit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1901016041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901016040}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 681123690}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1901016042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901016040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced3bf3fbf2259d4ba59caf432a49ed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleEffect: {fileID: 7100713451438301431, guid: f2b9f1eb4eda8ee4183896533bf99341,
+    type: 3}
+  _onHit: 1
+  _onLaserHit: 0
+  _onPlasmaHit: 1
+  _onDeath: 0
+  _onPlayerDeath: 0
+  _onFire: 0
 --- !u!1 &1901346986
 GameObject:
   m_ObjectHideFlags: 0

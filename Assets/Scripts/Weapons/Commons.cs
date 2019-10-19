@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Weapons
 {
+    public enum WEAPONTYPE { UNSET, LASER, PLASMA }
     public enum DAMAGETYPE { ENERGY, EXPLOSIVE }
 
     public abstract class PlayerWeapons : MonoBehaviour
